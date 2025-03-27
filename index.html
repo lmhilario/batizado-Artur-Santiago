@@ -15,12 +15,12 @@
   
   <div>
     <h2>Santiago</h2>
-    <img src="https://via.placeholder.com/300" alt="Imagem Santiago">
+    <!-- <img src="https://via.placeholder.com/300" alt="Imagem Santiago"> -->
   </div>
 
   <div>
     <h2>Artur</h2>
-    <img src="https://via.placeholder.com/300" alt="Imagem Artur">
+    <!-- <img src="https://via.placeholder.com/300" alt="Imagem Artur"> -->
   </div>
 
   <p><strong>Data do Batizado:</strong> 29 de Junho de 2025</p>
@@ -28,10 +28,44 @@
   <p><strong>Almoço:</strong> Restaurante ABC, Lisboa</p>
 
   <h3>RSVP</h3>
-  <form action="https://your-server.com/submit" method="POST">
-    <input type="text" name="nome" placeholder="Seu nome" required>
-    <input type="email" name="email" placeholder="Seu e-mail" required>
-    <button type="submit">Confirmar Presença</button>
-  </form>
+<h1>Confirmar Presença</h1>
+    <form id="rsvp-form">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <br><br>
+        <label for="confirmacao">Confirmar Presença:</label>
+        <select id="confirmacao" name="confirmacao" required>
+            <option value="Presente">Presente</option>
+            <option value="Ausente">Ausente</option>
+        </select>
+        <br><br>
+        <button type="submit">Enviar</button>
+    </form>
+
+<p id="mensagem"></p>
+
+<script>
+document.getElementById("rsvp-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  const nome = document.getElementById("nome").value;
+  const confirmacao = document.getElementById("confirmacao").value;
+  
+  fetch("https://script.google.com/macros/s/AKfycbxkQvsaUpUktioptj24l93OA79kfHuAEw54HGpkbC4VXciUE_Hnje9RNIH3_Ewsc_4z/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, confirmacao }),
+	mode: 'no-cors'
+  })
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("mensagem").innerText = "Resposta registrada com sucesso!";
+  })
+  .catch(error => {
+    document.getElementById("mensagem").innerText = "Erro ao enviar, tente novamente.";
+  });
+});
+</script>
+
 </body>
 </html>
