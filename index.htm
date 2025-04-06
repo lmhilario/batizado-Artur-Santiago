@@ -12,13 +12,15 @@
     img {
       max-width: 100%;
       height: auto;
+      display: block;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
 
   <!-- Imagem com mapa -->
-  <img src="convite.png" usemap="#image-map" alt="Convite">
+  <img src="convite.png" usemap="#image-map" alt="Convite" id="convite">
 
   <map name="image-map">
     <area
@@ -29,6 +31,14 @@
       title="Confirmação"
       target="_self">
   </map>
+
+  <!-- Script para tornar o mapa responsivo -->
+  <script src="https://unpkg.com/image-map-resizer@1.0.10/js/imageMapResizer.min.js"></script>
+  <script>
+    window.onload = () => {
+      imageMapResize(); // aplica ajuste automático às coords
+    };
+  </script>
 
 </body>
 </html>
