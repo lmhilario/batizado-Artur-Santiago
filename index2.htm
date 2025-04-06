@@ -172,7 +172,7 @@
 document.getElementById("rsvp-form").addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const nome = document.getElementById("nome").value;
+  const nome = document.getElementById("nome").value.trim().replace(/\s+/g, ' ');
   const confirmacao = document.getElementById("confirmacao").value;
   const mensagem = document.getElementById("mensagem");
 
