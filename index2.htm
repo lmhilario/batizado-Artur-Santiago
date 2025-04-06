@@ -152,13 +152,13 @@
 <form id="rsvp-form"  class="strwf_vertical">
 <div class="strwf__input-wrapper ">
 
-<select id="confirmacao" title="confirmacao" name="confirmacao" class="strwf__input strwf__input_select" name="Contamos contigo?" required="">
+<select id="confirmacao" title="confirmacao" name="confirmacao" class="strwf__input strwf__input_select" name="Contamos contigo?" required="true">
 
-<option value="Presente">Sim, contém comigo</option>
+<option value="Presente">Sim, contem comigo</option>
 
 <option value="Ausente">Não poderei estar presente</option>
 
-<option value="" disabled="" selected="">Contamos contigo?</option>
+<option value selected hidden>Contamos contigo?</option>
 </select><span class="error-text">Поле не заполнено</span></div><div class="strwf__input-wrapper ">
 <input id="nome" class="strwf__input" data-type="text" type="text" name="Primeiro e último nome" placeholder="Primeiro e último nome" required="">
 <span class="error-text">Поле не заполнено</span>
@@ -171,24 +171,33 @@
 <script>
 document.getElementById("rsvp-form").addEventListener("submit", function(event) {
   event.preventDefault();
-  
+
   const nome = document.getElementById("nome").value;
   const confirmacao = document.getElementById("confirmacao").value;
-  
+  const mensagem = document.getElementById("mensagem");
+
+  if (!confirmacao) {
+    mensagem.innerText = "Por favor, indica no campo acima se vais estar presente ou não.";
+    return;
+  }
+
+  mensagem.innerText = "A enviar resposta...";
+
   fetch("https://script.google.com/macros/s/AKfycbxkQvsaUpUktioptj24l93OA79kfHuAEw54HGpkbC4VXciUE_Hnje9RNIH3_Ewsc_4z/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ nome, confirmacao }),
-	mode: 'no-cors'
+    mode: 'no-cors'
   })
   .then(response => response.text())
   .then(data => {
-    document.getElementById("mensagem").innerText = "Registado! Altera a resposta a qualquer momento, basta responder novamente.";
+    mensagem.innerText = "Registado! Podes alterar a resposta a qualquer momento, basta responder novamente.";
   })
   .catch(error => {
-    document.getElementById("mensagem").innerText = "Erro ao enviar, tente novamente.";
+    mensagem.innerText = "Erro ao enviar, tenta novamente.";
   });
 });
+
 </script><div data-analytics="" data-container="grid" id="a967997f-5ced-4741-ac95-5f6d898755da" data-type="button" href="https://maps.app.goo.gl/mVAqpdA23px7dc1L9" contenteditable="false" spellcheck="false" class="page-content__component button_a967997f-5ced-4741-ac95-5f6d898755da" tab-index="0">
 <div class="str-button__inner">
   <svg style="margin-right: 19px;margin-top: 0px;width: 39px;" class="material-icons material-icons_svg material-icons_svg_top" xmlns="http://www.w3.org/2000/svg" xmlnsxlink="http://www.w3.org/1999/xlink" width="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-inline="false"><svg classname="material-icons" xmlns="http://www.w3.org/2000/svg" xmlnsxlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M13 .8c0-.5-.4-.8-.8-.8H12c-1.7 0-3 1.9-3 4.7v.9c0 1 .5 1.9 1.4 2.4-.3 1.2-.4 2.5-.4 2.5v4c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-4c0-.4-.1-1.4-.3-2.3.2-.2.3-.4.3-.7V.8z"></path><path fill="currentColor" d="M7.2 0H7v3.5c0 .3-.2.5-.5.5S6 3.8 6 3.5v-3c0-.3-.2-.5-.5-.5S5 .2 5 .5v3c0 .3-.2.5-.5.5S4 3.8 4 3.5V0h-.2c-.4 0-.8.4-.8.8v3.7c0 1 .6 1.9 1.5 2.3-.4 1.6-.5 3.7-.5 3.7v4c0 .8.7 1.5 1.5 1.5S7 15.3 7 14.5v-4c0-.5-.1-2.3-.4-3.7C7.4 6.4 8 5.5 8 4.5V.8c0-.4-.4-.8-.8-.8z"></path></svg></svg>
@@ -726,7 +735,7 @@ Francisco de Assis</p>
               left: -webkit-calc(50% - 500px + 38px);
               left: -o-calc(50% - 500px + 38px);
               left: calc(50% - 500px + 38px)
-            }.button_acb62194-2791-45bd-8fe8-c6823bc5f6ea_hover, .button_acb62194-2791-45bd-8fe8-c6823bc5f6ea:hover { color: rgba(255, 255, 255, 1);font-weight: 500;font-size: 16px;font-family: Roboto;letter-spacing: 0em;text-align: center;text-shadow: none; }</style><style>.page_pg_zQbEJeXUR7CHHWVAXqYumN54S { height: 900px; }.nl-desktop {
+            }.button_acb62194-2791-45bd-8fe8-c6823bc5f6ea_hover, .button_acb62194-2791-45bd-8fe8-c6823bc5f6ea:hover { color: rgba(255, 255, 255, 1);font-weight: 500;font-size: 16px;font-family: Roboto;letter-spacing: 0em;text-align: center;text-shadow: none; }</style><style>.page_pg_zQbEJeXUR7CHHWVAXqYumN54S { height: 1100px; }.nl-desktop {
           display: inline;
           content: normal;
         }body {
